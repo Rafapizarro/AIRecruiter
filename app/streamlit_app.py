@@ -43,7 +43,9 @@ if st.button("Ask"):
             response = requests.post(API_URL, json=payload)
 
         if response.status_code != 200:
-            st.error("Something went wrong. Please try again.")
+            st.error(f"Error {response.status_code}")
+            st.code(response.text)
+
         else:
             result = response.json()
 
