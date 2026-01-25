@@ -1,2 +1,10 @@
+# Backend
+fastapi
+uvicorn
+openai
+numpy
+python-dotenv
+
+# Frontend
 streamlit
 requests
