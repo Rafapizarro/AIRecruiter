@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from src.rag.pipeline import rag_pipeline
+import traceback  # add this at the top of the file
 
 app = FastAPI()
 
@@ -34,7 +35,8 @@ def ask_question(payload: AskRequest):
             mode=payload.mode
         )
     except Exception as e:
+        traceback.print_exc()  # 👈 logs full error in Cloud Run
         raise HTTPException(
             status_code=500,
-            detail=f"Internal error while processing the question: {e}"
+            detail=str(e)  # 👈 exposes error message
         )
