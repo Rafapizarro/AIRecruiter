@@ -27,7 +27,7 @@ class AskResponse(BaseModel):
 def health_check():
     return {"status": "ok"}
 
-@app.post("/ask", response_model=AskResponse)
+@app.post("/ask")
 def ask_question(payload: AskRequest):
     try:
         return rag_pipeline(
@@ -35,8 +35,8 @@ def ask_question(payload: AskRequest):
             mode=payload.mode
         )
     except Exception as e:
-        traceback.print_exc()  # 👈 logs full error in Cloud Run
+        traceback.print_exc()
         raise HTTPException(
             status_code=500,
-            detail=str(e)  # 👈 exposes error message
+            detail=str(e)
         )
