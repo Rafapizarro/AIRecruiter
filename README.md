@@ -13,4 +13,4 @@ This project builds a RAG-based system that:
 - Highlights strengths, alignment, and gaps honestly
 
 ## Status
-🚧 Work in progress — Week 1: Foundation
+🚧 Work in progress — Week 2: Functioning, smart, UX
