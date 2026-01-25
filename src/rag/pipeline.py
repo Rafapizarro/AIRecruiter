@@ -17,7 +17,9 @@ def rag_pipeline(input_text: str, mode: str = "qa") -> Dict:
     - job_fit: recruiter-style job fit evaluation
     """
 
-    EMBEDDINGS_PATH = Path("data/processed/embeddings.json")
+    BASE_DIR = Path(__file__).resolve().parents[2]
+    EMBEDDINGS_PATH = BASE_DIR / "data" / "processed" / "embeddings.json"
+
 
     if not EMBEDDINGS_PATH.exists():
         return {
