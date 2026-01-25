@@ -38,5 +38,3 @@ Answer:
 """.strip()
 
     return prompt
-
-    return prompt
