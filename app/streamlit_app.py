@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "https://ai-recruiter-api-301926925569.europe-west1.run.app/ask"
+API_URL = "http://127.0.0.1:8000/ask"
 
 st.set_page_config(
     page_title="AIRecruiter",
