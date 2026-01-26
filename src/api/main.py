@@ -1,27 +1,72 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
-from src.rag.pipeline import rag_pipeline
-import traceback
+from typing import Optional, List, Dict, Any
 
-app = FastAPI()
+from src.rag.pipeline import rag_pipeline
+
+app = FastAPI(
+    title="AIRecruiter API",
+    description="Recruiter-facing RAG backend for candidate evaluation",
+    version="0.1.0"
+)
+
+
+# ---------
+# Schemas
+# ---------
 
 class AskRequest(BaseModel):
-    question: str = Field(..., min_length=5)
-    mode: str = "qa"
+    question: str = Field(
+        ...,
+        min_length=5,
+        description="Recruiter question or full job description"
+    )
+    mode: str = Field(
+        "qa",
+        description="Evaluation mode: 'qa' or 'job_fit'"
+    )
+
+
+class AskResponse(BaseModel):
+    answer: str
+    confidence: str
+    sources: List[str]
+    fit_score: Optional[int] = None
+
+
+# ---------
+# Routes
+# ---------
 
 @app.get("/")
 def health_check():
     return {"status": "ok"}
 
-@app.post("/ask")
-def ask_question(payload: AskRequest):
+
+@app.post("/ask", response_model=AskResponse)
+def ask(payload: AskRequest):
+    """
+    Main inference endpoint.
+    Delegates reasoning to the RAG pipeline.
+    """
+
     try:
-        result = rag_pipeline(
+        result: Dict[str, Any] = rag_pipeline(
             input_text=payload.question,
             mode=payload.mode
         )
-        return JSONResponse(content=result)
+
+        # Defensive normalization (important)
+        return {
+            "answer": result.get("answer", ""),
+            "confidence": result.get("confidence", "unknown"),
+            "sources": result.get("sources", []),
+            "fit_score": result.get("fit_score"),
+        }
+
     except Exception as e:
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail=str(e))
+        # We want explicit failure, not silent 500s
+        raise HTTPException(
+            status_code=500,
+            detail=f"Backend error while processing request: {str(e)}"
+        )
