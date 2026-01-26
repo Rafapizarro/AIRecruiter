@@ -13,7 +13,7 @@ def build_job_fit_prompt(context_chunks: List[Dict], job_description: str) -> st
 
     prompt = f"""
     You are a senior technical recruiter evaluating candidate-job fit.
-    Your goal is to reason thoughtfully and conservatively, as a human recruiter would.
+    Your goal is to reason thoughtfully, as a human recruiter would.
 
     You must:
     - Base claims on provided evidence
