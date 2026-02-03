@@ -13,24 +13,41 @@ st.title("🧠 AIRecruiter")
 
 st.markdown(
     """
-**AIRecruiter** helps evaluate Rafa’s fit using verified background information.
+**AIRecruiter** evaluates Rafa’s professional profile using verified background information.
 
-Choose a mode and paste your question or job description.
+Select an evaluation mode and provide your input below.
 """
 )
 
+# --- Mode selection ---
 mode = st.radio(
     "Select evaluation mode",
     ["Ask a question", "Evaluate job fit"]
 )
 
+# --- Mode-specific placeholder ---
+if mode == "Ask a question":
+    placeholder = """Ask anything about Rafa’s professional background, for example:
+• Has Rafa worked in X or a similar environment?
+• How strong is his experience with Y?
+• What kind of teammate would he be in a fast-moving team?
+• Where might he need support or ramp-up time?
+"""
+else:
+    placeholder = """Paste the full job description here.
+
+AIRecruiter will evaluate Rafa’s fit based on verified background information,
+highlighting strengths, gaps, and overall alignment with the role.
+"""
+
 question = st.text_area(
     "Your input",
-    placeholder="Paste a recruiter question or a job description here…",
-    height=160
+    placeholder=placeholder,
+    height=180
 )
 
-if st.button("Ask"):
+# --- Action button ---
+if st.button("Analyze"):
     if len(question.strip()) < 10:
         st.warning("Please enter a more detailed input.")
     else:
@@ -49,20 +66,34 @@ if st.button("Ask"):
         else:
             result = response.json()
 
+            # --- Main answer ---
             st.subheader("Answer")
-            st.write(result["answer"])
+            st.write(result.get("answer", "No answer returned."))
 
-            st.subheader("Confidence")
-            st.write(result["confidence"].capitalize())
+            # --- Confidence ---
+            st.subheader("Level of confidence in this answer")
+            st.write(result.get("confidence", "unknown").capitalize())
 
-            if "fit_score" in result:
-                st.subheader("Estimated Fit Score")
-                st.metric(
-                    label="Fit score (0–10)",
-                    value=f"{result['fit_score']} / 10"
+            with st.expander("What does this confidence level mean?"):
+                st.markdown(
+                    """
+- **High**: Strong, consistent evidence across multiple parts of Rafa’s background.
+- **Medium**: Relevant experience exists, but with some assumptions or gaps.
+- **Low**: Limited direct evidence; conclusions are more inferential.
+- **Very low**: The available information does not strongly support a reliable answer.
+"""
                 )
 
-            if result.get("sources"):
-                with st.expander("Sources used"):
-                    for src in result["sources"]:
-                        st.write(f"- {src}")
+            # --- Fit score (job-fit mode only) ---
+            if mode == "Evaluate job fit":
+                if "fit_score" in result:
+                    st.markdown("## 🎯 Fit score")
+                    st.markdown(
+                        f"<h1 style='text-align: center;'>{result['fit_score']} / 10</h1>",
+                        unsafe_allow_html=True
+                    )
+
+                    if "fit_score_reason" in result:
+                        st.caption(result["fit_score_reason"])
+                else:
+                    st.info("A numerical fit score could not be reliably estimated for this role.")
