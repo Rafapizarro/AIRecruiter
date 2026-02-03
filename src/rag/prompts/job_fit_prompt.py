@@ -33,7 +33,7 @@ Important calibration guidance:
   domain alignment should carry significant weight in the overall assessment
 - Some ramp-up is acceptable unless the role explicitly requires immediate, deep expertise
 - Take into account any evidence of learning ability, adaptability, or growth trajectory where supported by the candidate’s experience
-
+- Avoid repeating the same justification across multiple sections; each section should add new information.
 
 Candidate context:
 ------------------
@@ -49,7 +49,7 @@ TASK:
 
 Reason carefully like a thoughtful human recruiter.
 
-Structure your reasoning into the following sections:
+Organize your reasoning clearly using the following high-level sections.
 
 1. Role alignment
    - Seniority, scope, and responsibility match
@@ -92,7 +92,7 @@ Fit score: <number from 0.0 to 10.0, in 0.5 increments only>
 Fit score reason: <one concise sentence explaining why the score is not higher or lower>
 
 Do not include any other numeric scores.
-Keep the tone factual, recruiter-like, and grounded in evidence.
+Keep the response factual, recruiter-like, and grounded in evidence.
 """.strip()
 
     return prompt

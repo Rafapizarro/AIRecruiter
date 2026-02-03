@@ -1,5 +1,7 @@
 import streamlit as st
 import requests
+import re
+
 
 API_URL = "https://ai-recruiter-api-301926925569.europe-west1.run.app/ask"
 
@@ -85,15 +87,21 @@ if st.button("Analyze"):
                 )
 
             # --- Fit score (job-fit mode only) ---
-            if mode == "Evaluate job fit":
-                if "fit_score" in result:
-                    st.markdown("## 🎯 Fit score")
-                    st.markdown(
-                        f"<h1 style='text-align: center;'>{result['fit_score']} / 10</h1>",
-                        unsafe_allow_html=True
-                    )
+            answer_text = result.get("answer", "")
 
-                    if "fit_score_reason" in result:
-                        st.caption(result["fit_score_reason"])
-                else:
-                    st.info("A numerical fit score could not be reliably estimated for this role.")
+            # Extract fit score
+            score_match = re.search(r"Fit score:\s*([0-9]+(?:\.5)?)", answer_text)
+            reason_match = re.search(r"Fit score reason:\s*(.+)", answer_text)
+
+            fit_score = score_match.group(1) if score_match else None
+            fit_reason = reason_match.group(1) if reason_match else None
+
+            if mode == "Evaluate job fit" and fit_score:
+                st.markdown("## 🎯 Fit score")
+                st.markdown(
+                    f"<h1 style='text-align: center;'>{fit_score} / 10</h1>",
+                    unsafe_allow_html=True
+                )
+
+                if fit_reason:
+                    st.caption(fit_reason)
