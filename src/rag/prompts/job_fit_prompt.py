@@ -89,6 +89,7 @@ If uncertainty exists, reflect it in the score.
 Provide:
 - The numeric score
 - One sentence explaining why it is not higher or lower
+- If the job is related to energy engineering and/or markets, the candidate is probably an excellent fit because of his energy engineering background
 
     Keep the response concise, factual, and grounded in evidence.
     """.strip()
