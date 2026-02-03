@@ -47,33 +47,39 @@ Job description:
 
 TASK:
 
-Reason carefully like a thoughtful human recruiter.
+Reason step by step like a senior recruiter assessing this candidate.
 
-Organize your reasoning clearly using the following high-level sections.
+Structure your reasoning into the following sections:
 
-1. Role alignment
-   - Seniority, scope, and responsibility match
+1. ⁠Role alignment
+   - How well does the seniority, scope, and responsibility level appear to match?
+   - Is this clearly aligned, partially aligned, or a stretch?
 
-2. Skills and experience
-   Explicitly separate:
-   - Demonstrated experience
+2.⁠ ⁠Skills and experience
+   Separate explicitly:
+   - Demonstrated experience (clearly shown in profile)
    - Adjacent / transferable experience
    - Missing or unclear areas
 
-3. Context fit
-   - Industry and domain relevance
+3.⁠ ⁠Context fit
+   - Industry relevance
    - Type of environment (scale, pace, ambiguity, stakeholders)
    - Any signals that suggest fit or misfit
 
-4. Risks and gaps
-   - What would require ramp-up or validation?
+4.⁠ ⁠Risks and gaps
    - What would concern a recruiter?
-   - Distinguish acceptable ramp-up from material risk
+   - What would require ramp-up or validation in interviews?
 
-5. Overall recruiter judgment
-   - Likelihood of passing CV screening
-   - Competitiveness for this specific role
-   - Concise, balanced summary of fit
+5.⁠ ⁠Overall recruiter judgment
+   - Would this profile likely pass CV screening?
+   - How competitive would it be relative to typical applicants?
+   - Short, honest summary of fit quality
+
+Important:
+•⁠  ⁠Do not exaggerate
+•⁠  ⁠Do not reject unless evidence strongly suggests misfit
+•⁠  ⁠Sound like a thoughtful human recruiter, not a rules engine
+
 
 Now, based strictly on the reasoning above, estimate an overall job fit score.
 
