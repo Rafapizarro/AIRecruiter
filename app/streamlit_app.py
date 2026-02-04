@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 import re
 
-
 API_URL = "https://ai-recruiter-api-301926925569.europe-west1.run.app/ask"
 
 st.set_page_config(
@@ -48,6 +47,9 @@ question = st.text_area(
     height=180
 )
 
+# --- Container reserved for top-level fit score ---
+fit_score_container = st.container()
+
 # --- Action button ---
 if st.button("Analyze"):
     if len(question.strip()) < 10:
@@ -67,10 +69,30 @@ if st.button("Analyze"):
 
         else:
             result = response.json()
+            answer_text = result.get("answer", "")
+
+            # --- Extract fit score from answer text ---
+            score_match = re.search(r"Fit score:\s*([0-9]+(?:\.5)?)", answer_text)
+            reason_match = re.search(r"Fit score reason:\s*(.+)", answer_text)
+
+            fit_score = score_match.group(1) if score_match else None
+            fit_reason = reason_match.group(1) if reason_match else None
+
+            # --- Render Fit score at the TOP (job-fit mode only) ---
+            if mode == "Evaluate job fit" and fit_score:
+                with fit_score_container:
+                    st.markdown("## 🎯 Fit score")
+                    st.markdown(
+                        f"<h1 style='text-align: center; margin-bottom: 0;'>{fit_score} / 10</h1>",
+                        unsafe_allow_html=True
+                    )
+                    if fit_reason:
+                        st.caption(fit_reason)
+                    st.divider()
 
             # --- Main answer ---
             st.subheader("Answer")
-            st.write(result.get("answer", "No answer returned."))
+            st.write(answer_text if answer_text else "No answer returned.")
 
             # --- Confidence ---
             st.subheader("Level of confidence in this answer")
@@ -85,23 +107,3 @@ if st.button("Analyze"):
 - **Very low**: The available information does not strongly support a reliable answer.
 """
                 )
-
-            # --- Fit score (job-fit mode only) ---
-            answer_text = result.get("answer", "")
-
-            # Extract fit score
-            score_match = re.search(r"Fit score:\s*([0-9]+(?:\.5)?)", answer_text)
-            reason_match = re.search(r"Fit score reason:\s*(.+)", answer_text)
-
-            fit_score = score_match.group(1) if score_match else None
-            fit_reason = reason_match.group(1) if reason_match else None
-
-            if mode == "Evaluate job fit" and fit_score:
-                st.markdown("## 🎯 Fit score")
-                st.markdown(
-                    f"<h1 style='text-align: center;'>{fit_score} / 10</h1>",
-                    unsafe_allow_html=True
-                )
-
-                if fit_reason:
-                    st.caption(fit_reason)
