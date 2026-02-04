@@ -33,6 +33,8 @@ Important calibration guidance:
   domain alignment should carry significant weight in the overall assessment
 - Some ramp-up is acceptable unless the role explicitly requires immediate, deep expertise
 - Take into account any evidence of learning ability, adaptability, or growth trajectory where supported by the candidate’s experience
+- Avoid repeating the same justification across multiple sections; each section should add new information.
+
 
 Candidate context:
 ------------------
@@ -75,15 +77,15 @@ Structure your reasoning using the sections below.
 Now, based strictly on the reasoning above, estimate an overall job fit score.
 
 Scoring guidelines:
-- 9–10: Excellent fit for this role
-- 7–8: Strong fit with manageable gaps
-- 5–6: Partial fit, interview-dependent
-- 3–4: Weak fit
-- 0–2: Clear mismatch
+- 9.0–10.0: Excellent fit for this role
+- 7.0–8.9: Strong fit with manageable gaps
+- 5.0–6.9: Partial fit, interview-dependent
+- 3.0–4.9: Weak fit
+- 0.0–2.9: Clear mismatch
 
 ### Output format (mandatory)
 
-Fit score: <integer from 0 to 10>
+Fit score: <number from 0.0 to 10.0, in 0.5 increments only>
 Fit score reason: <one concise sentence explaining why the score is not higher or lower>
 
 Do not include any other numeric scores.
