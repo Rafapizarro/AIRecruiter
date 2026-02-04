@@ -50,7 +50,10 @@ question = st.text_area(
 # --- Action button ---
 analyze_clicked = st.button("Analyze")
 
-# --- Container reserved for top-level fit score ---
+# --- Spinner container (above fit score) ---
+spinner_container = st.container()
+
+# --- Fit score container ---
 fit_score_container = st.container()
 
 # --- Action button ---
@@ -63,8 +66,10 @@ if analyze_clicked:
             "mode": "job_fit" if mode == "Evaluate job fit" else "qa"
         }
 
-        with st.spinner("Analyzing profile..."):
-            response = requests.post(API_URL, json=payload)
+        with spinner_container:
+            with st.spinner("Analyzing profile..."):
+                response = requests.post(API_URL, json=payload)
+
 
         if response.status_code != 200:
             st.error(f"Error {response.status_code}")
@@ -91,7 +96,6 @@ if analyze_clicked:
                     )
                     if fit_reason:
                         st.caption(fit_reason)
-                    st.divider()
 
             # --- Main answer ---
             st.subheader("Answer")

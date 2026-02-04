@@ -44,17 +44,36 @@ Job description:
 {job_description}
 ------------------
 
+
 TASK:
 
 Reason carefully like a thoughtful human recruiter.
 
-Structure your reasoning into the following sections:
+Structure your reasoning using the sections below.
+Use **concise bullet points** where helpful, prioritizing clarity and non-repetition.
+Avoid unnecessary sub-bullets or restating the same point across sections.
 
 1. Role alignment
+- Seniority, scope, and responsibility match relative to the role
+
 2. Skills and experience
+- Demonstrated experience (clearly supported by evidence)
+- Adjacent or transferable experience
+- Missing or unclear areas (only if relevant)
+
 3. Context fit
+- Industry and domain relevance
+- Type of environment (scale, pace, ambiguity, stakeholders)
+- Signals of fit or misfit
+
 4. Risks and gaps
+- Areas requiring ramp-up or validation
+- Distinguish acceptable ramp-up from material risk
+
 5. Overall recruiter judgment
+- Likelihood of passing CV screening
+- Competitiveness for this specific role
+- Concise, balanced summary of overall fit
 
 Now, based strictly on the reasoning above, estimate an overall job fit score.
 
