@@ -47,11 +47,14 @@ question = st.text_area(
     height=180
 )
 
+# --- Action button ---
+analyze_clicked = st.button("Analyze")
+
 # --- Container reserved for top-level fit score ---
 fit_score_container = st.container()
 
 # --- Action button ---
-if st.button("Analyze"):
+if analyze_clicked:
     if len(question.strip()) < 10:
         st.warning("Please enter a more detailed input.")
     else:
@@ -81,7 +84,7 @@ if st.button("Analyze"):
             # --- Render Fit score at the TOP (job-fit mode only) ---
             if mode == "Evaluate job fit" and fit_score:
                 with fit_score_container:
-                    st.markdown("## 🎯 Fit score")
+                    st.markdown("### 🎯 Fit score")
                     st.markdown(
                         f"<h1 style='text-align: center; margin-bottom: 0;'>{fit_score} / 10</h1>",
                         unsafe_allow_html=True
