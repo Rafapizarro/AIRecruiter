@@ -53,7 +53,11 @@ Reason carefully like a thoughtful human recruiter.
 Structure your reasoning using the sections below.
 
 1. Role alignment
-- Seniority, scope, and responsibility match relative to the role
+- Identify the core requirements and themes of the role (using the job description’s language where relevant)
+- Map those requirements directly to the candidate’s background
+- State clearly why this profile makes sense for this role, before discussing gaps or ramp-up
+- Where relevant, briefly reference career trajectory, educational background, or professional interests that help explain the candidate’s alignment with this role
+- Keep this section concise (3 to 5 sentences maximum)
 
 2. Skills and experience
 - Demonstrated experience (clearly supported by evidence)
@@ -65,9 +69,10 @@ Structure your reasoning using the sections below.
 - Type of environment (scale, pace, ambiguity, stakeholders)
 - Signals of fit or misfit
 
-4. Risks and gaps
-- Areas requiring ramp-up or validation
-- Distinguish acceptable ramp-up from material risk
+4. Ramp-up areas and acquirable knowledge
+- Skills, tools, or knowledge the candidate would need to ramp up on to perform in this role
+- Areas where early support, onboarding, or validation would be beneficial
+- Distinguish expected ramp-up from potential performance risk
 
 5. Overall recruiter judgment
 - Likelihood of passing CV screening
