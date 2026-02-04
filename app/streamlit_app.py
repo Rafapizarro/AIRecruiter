@@ -134,6 +134,11 @@ if analyze_clicked:
     result = response.json()
     answer_text = result.get("answer", "")
 
+    # Remove fit score lines from the main answer (already shown above)
+    answer_text = re.sub(r"Fit score:\s*.*", "", answer_text)
+    answer_text = re.sub(r"Fit score reason:\s*.*", "", answer_text)
+    answer_text = answer_text.strip()
+
     # --- Extract fit score from answer text ---
     score_match = re.search(r"Fit score:\s*([0-9]+(?:\.5)?)", answer_text)
     reason_match = re.search(r"Fit score reason:\s*(.+)", answer_text)
@@ -150,11 +155,24 @@ if analyze_clicked:
                 unsafe_allow_html=True
             )
             if fit_reason:
-                st.caption(fit_reason)
+                st.markdown(
+                    f"""
+                    <p style="
+                        text-align: center;
+                        font-size: 1.05rem;
+                        margin-top: 0.5rem;
+                    ">
+                        {fit_reason}
+                    </p>
+                    """,
+                    unsafe_allow_html=True
+                )
 
     # --- Main answer ---
     st.subheader("Answer")
     st.write(answer_text if answer_text else "No answer returned.")
+
+    st.markdown("<div style='margin-top: 2rem;'></div>", unsafe_allow_html=True)
 
     # --- Confidence ---
     st.subheader("Level of confidence in this answer")
