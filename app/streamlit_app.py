@@ -132,16 +132,22 @@ if analyze_clicked:
         st.stop()
 
     result = response.json()
-    answer_text = result.get("answer", "")
 
-    # Remove fit score lines from the main answer (already shown above)
-    answer_text = re.sub(r"Fit score:\s*.*", "", answer_text)
+    # --- Raw answer from API ---
+    raw_answer_text = result.get("answer", "")
+
+    # --- Extract fit score from RAW answer ---
+    score_match = re.search(r"Fit score:\s*([0-9]+(?:\.5)?)", raw_answer_text)
+    reason_match = re.search(r"Fit score reason:\s*(.+)", raw_answer_text)
+
+    fit_score = score_match.group(1) if score_match else None
+    fit_reason = reason_match.group(1) if reason_match else None
+
+    # --- Clean answer for display (remove duplicated score info) ---
+    answer_text = re.sub(r"Fit score:\s*.*", "", raw_answer_text)
     answer_text = re.sub(r"Fit score reason:\s*.*", "", answer_text)
     answer_text = answer_text.strip()
 
-    # --- Extract fit score from answer text ---
-    score_match = re.search(r"Fit score:\s*([0-9]+(?:\.5)?)", answer_text)
-    reason_match = re.search(r"Fit score reason:\s*(.+)", answer_text)
 
     fit_score = score_match.group(1) if score_match else None
     fit_reason = reason_match.group(1) if reason_match else None
