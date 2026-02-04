@@ -48,10 +48,7 @@ Job description:
 TASK:
 
 Reason carefully like a thoughtful human recruiter.
-
 Structure your reasoning using the sections below.
-Use **concise bullet points** where helpful, prioritizing clarity and non-repetition.
-Avoid unnecessary sub-bullets or restating the same point across sections.
 
 1. Role alignment
 - Seniority, scope, and responsibility match relative to the role
