@@ -174,6 +174,20 @@ if analyze_clicked:
                     unsafe_allow_html=True
                 )
 
+        with st.expander("How to interpret this score"):
+            st.markdown(
+                """
+        **Scoring guidelines**
+
+        - **9–10**: Excellent fit — candidate closely matches role requirements with minimal concerns.
+        - **7–9**:  Strong fit — the candidate aligns well with the role’s core requirements and is expected to perform effectively, with some normal ramp-up typical for the position.
+        - **5–7**:  Partial fit — relevant background, but interview-dependent and requires validation.
+        - **3-5**:  Weak fit — significant gaps relative to role expectations.
+        - **0-3**:  Clear mismatch — role and profile are poorly aligned.
+        """
+            )
+
+
     # --- Main answer ---
     st.subheader("Answer")
     st.write(answer_text if answer_text else "No answer returned.")
